@@ -1,70 +1,131 @@
 <template>
-  <div class="card-container">
-    <div class="card card2" :style="themeModeComputed">
-      <p class="card_name">Nombre: {{name}} </p>
-      <div class="grid-container">
-        <div class="grid-child-age">
-         Edad: {{age}}
+  <div class="container">
+    <div class="card">
+      <div class="box" :style="themeModeComputed">
+        <div class="content">
+          <h2>{{ age }}</h2>
+          <h3>{{ name }}</h3>
+          <p>{{ company }}</p>
         </div>
-        <div class="grid-child-company">
-         Empresa: {{company}}
-        </div>
-
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import { toRef } from '@vue/reactivity';
-import { computed } from '@vue/runtime-core';
+import { toRef } from "@vue/reactivity";
+import { computed } from "@vue/runtime-core";
 export default {
-  name: 'Card',
+  name: "Card",
   props: {
     name: String,
     company: String,
     age: String,
-    themeMode: String
-  }, setup(props) {
-    const background = toRef(props, 'backgroundColor')
-    const themeModeRef = toRef(props, 'themeMode')
+    themeMode: String,
+  },
+  setup(props) {
+    const background = toRef(props, "backgroundColor");
+    const themeModeRef = toRef(props, "themeMode");
     const themeModeComputed = computed(() => {
       return {
-        backgroundColor: themeModeRef.value === 'dark' ? 'blue' : 'red',
-        color: themeModeRef.value === 'dark' ? 'red' : 'blue'
-      }
-    })
+        backgroundColor: themeModeRef.value === "ps" ? "#2f5687" : "#3e6e1a",
+      };
+    });
     return {
       background,
-     themeModeComputed,
-     themeModeRef
-    }
-  }
-}
+      themeModeComputed,
+      themeModeRef,
+    };
+  },
+};
 </script>
 
-<style>
-.card-container {
-  display:grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  justify-content: center;
-  align-items: center;
-  gap: 0px 0px;
-  grid-template-areas: 
-  "card1 card2 card3";
-}
+<style scoped>
 .card {
-  background-color: #222831;
-  height: 15rem;
-  border-radius: 5px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  box-shadow: rgba(0,0,0,0.7);
-  color: white;
+  position: relative;
+  min-width: 320px;
+  height: 440px;
+  box-shadow: inset 5px 5px 5px rgba(0, 0, 0, 0.2),
+    inset -5px -5px 15px rgba(255, 255, 255, 0.1),
+    5px 5px 15px rgba(0, 0, 0, 0.3), -5px -5px 15px rgba(255, 255, 255, 0.1);
+  border-radius: 15px;
+  margin: 30px;
+  transition: 0.5s;
 }
 
-.card2 {
-  grid-area: card2;
+.card .box {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  right: 20px;
+  bottom: 20px;
+  background: #2a2b2f;
+  border-radius: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  transition: 0.5s;
+}
+
+.card .box:hover {
+  transform: translateY(-50px);
+}
+
+.card .box:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.card .box .content {
+  padding: 20px;
+  text-align: center;
+}
+
+.card .box .content h2 {
+  position: absolute;
+  top: -10px;
+  right: 30px;
+  font-size: 8rem;
+  color: rgba(255, 255, 255, 0.1);
+}
+
+.card .box .content h3 {
+  font-size: 1.8rem;
+  color: #fff;
+  z-index: 1;
+  transition: 0.5s;
+  margin-bottom: 15px;
+}
+
+.card .box .content p {
+  font-size: 1rem;
+  font-weight: 300;
+  color: rgba(255, 255, 255, 0.9);
+  z-index: 1;
+  transition: 0.5s;
+}
+
+.card .box .content a {
+  position: relative;
+  display: inline-block;
+  padding: 8px 20px;
+  background: black;
+  border-radius: 5px;
+  text-decoration: none;
+  color: white;
+  margin-top: 20px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  transition: 0.5s;
+}
+.card .box .content a:hover {
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.6);
+  background: #fff;
+  color: #000;
 }
 </style>
