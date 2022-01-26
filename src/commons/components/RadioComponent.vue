@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import { ref } from '@vue/reactivity'
+import { toRef } from '@vue/reactivity'
 export default {
   name: 'radioComponent',
   props: {
@@ -15,7 +15,7 @@ export default {
   },
   emits: ['optionChanged'],
   setup(props, {emit}) {
-    const picked = ref(props.default)
+    const picked = toRef(props, 'default');
     function radioOptionChanged(event) {
  emit('optionChanged', event.target.value)
     }
@@ -24,6 +24,6 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 
 </style>

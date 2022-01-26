@@ -1,5 +1,9 @@
 # hello-world
 
+```
+npm install -g vercel
+```
+
 ## Project setup
 ```
 npm install

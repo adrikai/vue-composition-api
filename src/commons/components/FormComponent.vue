@@ -2,7 +2,7 @@
 <div class="form-container">
   <label for="name"> Nombre: </label>
   <input class="form-item" type="text" id="name" placeholder="Introduzca su nombre" v-model="name">
-  <label for="edad">Edad: </label>
+  <label for="age">Edad: </label>
   <input class="form-item" type="text" id="age" placeholder="Introduzca su edad" v-model="age">
    <label for="empresa">Empresa: </label>
   <input class="form-item" type="text" id="company" placeholder="Introduzca su empresa" v-model="company">
@@ -31,7 +31,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .form-container {
   display:flex;
   flex-direction: column;

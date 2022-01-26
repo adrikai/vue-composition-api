@@ -6,6 +6,7 @@
           <h2>{{ age }}</h2>
           <h3>{{ name }}</h3>
           <p>{{ company }}</p>
+          {{themeModeRef}}
         </div>
       </div>
     </div>
@@ -13,7 +14,6 @@
 </template>
 
 <script>
-import { toRef } from "@vue/reactivity";
 import { computed } from "@vue/runtime-core";
 export default {
   name: "Card",
@@ -24,17 +24,13 @@ export default {
     themeMode: String,
   },
   setup(props) {
-    const background = toRef(props, "backgroundColor");
-    const themeModeRef = toRef(props, "themeMode");
     const themeModeComputed = computed(() => {
       return {
-        backgroundColor: themeModeRef.value === "ps" ? "#2f5687" : "#3e6e1a",
+        backgroundColor: props.themeMode === "ps" ? "#2f5687" : "#3e6e1a",
       };
     });
     return {
-      background,
       themeModeComputed,
-      themeModeRef,
     };
   },
 };
