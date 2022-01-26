@@ -1,16 +1,15 @@
 <template>
   <div class="card-container">
-    <div class="card card2" :style="{backgroundColor: background}">
-      <p class="card_name"> {{name}} </p>
+    <div class="card card2" :style="themeModeComputed">
+      <p class="card_name">Nombre: {{name}} </p>
       <div class="grid-container">
-        <div class="grid-child-tec">
-          {{empresa}}
+        <div class="grid-child-age">
+         Edad: {{age}}
         </div>
-        <div class="grid-child-experience">
-          {{edad}}
-          {{nightModeComputed}}
-          {{nMode}}
+        <div class="grid-child-company">
+         Empresa: {{company}}
         </div>
+
       </div>
     </div>
   </div>
@@ -23,26 +22,22 @@ export default {
   name: 'Card',
   props: {
     name: String,
-    empresa: String,
-    edad: String,
-    backgroundColor: String,
-    nightMode: Boolean
+    company: String,
+    age: String,
+    themeMode: String
   }, setup(props) {
     const background = toRef(props, 'backgroundColor')
-    const nMode = toRef(props, 'nightMode')
-    const nightModeComputed = computed(() => {
-      let p = nMode.value
-      if(p === true){
-        return 'aaa'
-      } else {
-        return 'eee'
+    const themeModeRef = toRef(props, 'themeMode')
+    const themeModeComputed = computed(() => {
+      return {
+        backgroundColor: themeModeRef.value === 'dark' ? 'blue' : 'red',
+        color: themeModeRef.value === 'dark' ? 'red' : 'blue'
       }
-
     })
     return {
       background,
-     nightModeComputed,
-     nMode
+     themeModeComputed,
+     themeModeRef
     }
   }
 }

@@ -1,7 +1,7 @@
 <template>
-<div v-for="(opcion, index) in opciones" v-bind:key="index">
-  <input type="radio" id="opcion.value" v-bind:value="opcion.value" v-model="picked">
-<label for="uno">{{opcion.label}}</label>
+<div v-for="(option, index) in options" v-bind:key="index">
+  <input type="radio" id="option.value" v-bind:value="option.value" v-model="picked">
+<label for="option.value">{{option.label}}</label>
 </div>
 </template>
 
@@ -11,7 +11,7 @@ import { watch } from '@vue/runtime-core'
 export default {
   name: 'radioComponent',
   props: {
-    opciones: Array
+    options: Array
   },
   emits: ['optionChanged'],
   setup(props, {emit}) {

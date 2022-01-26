@@ -1,8 +1,11 @@
 <template>
 <div class="form-container">
-  <input type="text" placeholder="name" v-model="name">
-  <input type="text" placeholder="edad" v-model="edad">
-  <input type="text" placeholder="pp" v-model="empresa">
+  <label for="name"> Nombre: </label>
+  <input class="form-item" type="text" id="name" placeholder="Introduzca su nombre" v-model="name">
+  <label for="edad">Edad: </label>
+  <input class="form-item" type="text" id="age" placeholder="Introduzca su edad" v-model="age">
+   <label for="empresa">Empresa: </label>
+  <input class="form-item" type="text" id="company" placeholder="Introduzca su empresa" v-model="company">
 </div>
 
 </template>
@@ -15,8 +18,8 @@ export default {
   setup(props,{emit}) {
     const state = reactive({
       name: '',
-      edad: '',
-      empresa: ''
+      age: '',
+      company: ''
     })
 
     watch(state, (newVal) => {
@@ -29,5 +32,15 @@ export default {
 </script>
 
 <style>
+.form-container {
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 
+.form-item{
+  padding: 5px;
+  margin: 5px;
+}
 </style>
